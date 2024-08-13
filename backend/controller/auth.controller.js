@@ -23,7 +23,7 @@ export const signup = async(req, res, next) => {
     const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`
     const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`
 
-    const newUSer = new User({
+    const newUser = new User({
         username,
         email,
         password: hashshedPassword,
@@ -33,15 +33,15 @@ export const signup = async(req, res, next) => {
 
     try {
         // generate jwt token
-        const token = jwt.sign({id: newUSer._id}, process.env.JWT_SECRET)
+        const token = jwt.sign({id: newUser._id}, process.env.JWT_SECRET)
 
-        await newUSer.save()
+        await newUser.save()
 
         res.cookie("access_token", token, {httpOnly: true}).status(201).json({
-            _id: newUSer._id,
-            username: newUSer.username,
-            email: newUSer.email,
-            profilePic: newUSer.profilePic,
+            _id: newUser._id,
+            username: newUser.username,
+            email: newUser.email,
+            profilePic: newUser.profilePic,
         })
     } catch (error) {
         next(error)
