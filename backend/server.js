@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGO_URI).then( () => {
     console.log(error);
 })
 
-const app = express() 
+// const app = express() 
 
 app.use(express.json())
 
@@ -27,12 +27,13 @@ app.get("/", (req, res) => {
 import authRoutes from "./routes/auth.routes.js"
 import messageRoutes from "./routes/message.routes.js"
 import userRoute from "./routes/user.routes.js"
+import { server, app } from './socket/socket.js'
 
 app.use("/api/auth", authRoutes)
 app.use("/api/messages", messageRoutes)
 app.use("/api/users", userRoute)
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log("Server is running on port " + PORT)
 })
 
