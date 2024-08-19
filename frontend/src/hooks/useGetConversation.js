@@ -10,8 +10,9 @@ const useGetConversation = () => {
         const getConversations = async () => {
             try {
                 setLoading(true)
-                const res = await fetch("http://localhost:5173/api/users")
+                // const res = await fetch("http://localhost:5173/api/users")
                 // const res = await fetch("/api/users")
+                const res = await fetch("https://chit-chat-backend-dxbo.onrender.com/api/users")
 
                 const data = await res.json()
                 if(data.error) {
